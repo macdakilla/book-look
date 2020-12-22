@@ -1,29 +1,63 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Main from "../view/Main";
+import Favorites from "../view/Favorites";
+import Product from '../view/Product'
+import CategoryList from '../view/CategoryList'
+import CategoryItem from '../view/CategoryItem';
 
-Vue.use(VueRouter)
+import NProgress from 'nprogress';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+    routes: [
+        {
+            path: "/",
+            name: "iMain",
+            component: Main,
+            props: true,
+        },
+        {
+            path: "/favorites",
+            name: "Favorites",
+            component: Favorites,
+            props: true,
+        },
+        {
+            path: "/category",
+            name: "CategoryList",
+            component: CategoryList,
+            props: true
+        },
+        {
+            path: "/category/:name",
+            name: 'CategoryItem',
+            component: CategoryItem,
+            props: true
+        },
+        {
+            path: "/:id",
+            name: "Id",
+            component: Product,
+            props: true
+        },
+        {
+            path: '*',
+            redirect: '/'
+        }
+    ],
+});
 
-export default router
+router.beforeResolve((to, from, next) => {
+    if (to.name) {
+        NProgress.start();
+    }
+    next();
+});
+
+router.afterEach((to, from) => {
+    NProgress.done();
+});
+
+export default router;

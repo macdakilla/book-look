@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import Books from "./modules/books";
+import Favorite from './modules/favorite';
+import Categories from './modules/categories';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+    modules: {
+        Books,
+        Favorite,
+        Categories
+    },
+});
