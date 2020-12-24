@@ -7,7 +7,7 @@ const mutations = {
     },
     'REMOVE_FAVORITE' (state, id) {
         let index = 0;
-        let hasItem = state.favorite.find((elem, i) => {index = i;  return elem.id == id}) === undefined ? false : true;
+        let hasItem = state.favorite.find((elem, i) => {index = i;  return elem.id == id}) !== undefined;
         if (hasItem) {
             state.favorite.splice(index, 1);
         }

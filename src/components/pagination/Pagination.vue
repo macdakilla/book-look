@@ -2,7 +2,7 @@
     <nav class="pagination aling-items-center justify-content-center">
         <ul class="pagination">
             <pagination-item
-                v-for="(pag, index) in 12"
+                v-for="(pag, index) in amountBtnPagination"
                 :key="index"
                 :title="previosOrNext(index)"
                 :page="index"
@@ -21,7 +21,10 @@ export default {
     name: 'pagination',
     data() {
         return {
-            currentPage: 1
+            currentPage: 1,
+            positionBtnNext: 11,
+            positionBtnPrevious: 0,
+            amountBtnPagination: 12
         }
     },
     props: ['category', 'categoryName'],
@@ -45,10 +48,10 @@ export default {
             }
         },
         previosOrNext(index) {
-            if (index == 0) {
-                return 'Previous'
-            } else if(index == 11) {
-                return 'Next'
+            if (index == this.positionBtnPrevious) {
+                return 'Предыдущая'
+            } else if(index == this.positionBtnNext) {
+                return 'Следущая'
             } else {
                 return index
             }

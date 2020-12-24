@@ -14,7 +14,7 @@
                     :thumbBook="notUndefined(item.volumeInfo.imageLinks) && notUndefined(item.volumeInfo.imageLinks.thumbnail) ? item.volumeInfo.imageLinks.thumbnail : './assets/foto-not-found.jpg'"
                     :item="item"
                     :descr="notUndefined(item.volumeInfo.description) ? item.volumeInfo.description : 'Для данной книги ещё не создано описание. Возможно оно появится позже!'"
-                    :isFavorited="favorite.find((elem) => elem.id == item.id) === undefined ? false : true"
+                    :isFavorited="favorite.find((elem) => elem.id == item.id) !== undefined"
                     :year="notUndefined(item.volumeInfo.publishedDate) ? item.volumeInfo.publishedDate.substr(0, 4) : 'Год не известен'"
                 />
             </div>

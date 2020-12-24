@@ -19,7 +19,7 @@
                 />
             </div>
             <Pagination 
-                v-if="books && books.length == 18"
+                v-if="books && maxAmountBooksPerPage == 18"
                 categoryName=""
                 category=""
             />
@@ -33,6 +33,11 @@ import Pagination from '../components/pagination/Pagination';
 
 export default {
     name: 'iMain',
+    data() {
+        return {
+            maxAmountBooksPerPage: 18
+        }
+    },
     computed: {
         books() {
             return this.$store.getters.books.items;

@@ -100,7 +100,8 @@ export default {
                 saleInfo: {
                 }
             },
-            isActiveDescr: false
+            isActiveDescr: false,
+            minDescrHeight: 250
         }
     },
     computed: {
@@ -115,25 +116,12 @@ export default {
             }
         },
         showMoreDescr() {
-            return this.infoBook.description !== undefined && this.infoBook.description.length > 250
-        },/* 
-        isFavorited() {
-            return this.favorite.find((elem) => elem.id == book.id) === undefined ? false : true
-        }, */
+            return this.infoBook.description !== undefined && this.infoBook.description.length > this.minDescrHeight
+        },
         favorite() {
             return this.$store.getters.favorite;
         }
-    }/* ,
-    methods: {
-        toggleFavorite(event) {
-            event.stopImmediatePropagation();
-            if (!this.isFavorited) {
-                this.$store.commit('SET_FAVORITE', this.book);
-            } else {
-                this.$store.commit('REMOVE_FAVORITE', this.book.id);
-            }
-        }
-    } */,
+    },
     created() {
         axios
             .get(this.mainUrlApi+ '/' + this.$route.params.id)
